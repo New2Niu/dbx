@@ -598,10 +598,7 @@ public final class Gbase8sAgent extends ConfiguredJdbcAgent {
         if (params.isMysql_compat_mode()) {
             return true;
         }
-        String sqlMode = connectionParameterValue(params.getUrl_params(), "SQLMODE");
-        if (sqlMode.isEmpty()) {
-            sqlMode = connectionParameterValue(params.getConnection_string(), "SQLMODE");
-        }
+        String sqlMode = connectionParameterValue(buildUrl(params), "SQLMODE");
         return sqlMode.equalsIgnoreCase("mysql");
     }
 
